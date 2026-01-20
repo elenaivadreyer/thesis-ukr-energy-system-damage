@@ -1,0 +1,43 @@
+# pre-commit: A framework for managing and maintaining multi-language pre-commit hooks
+# Installation: pre-commit install
+# Run manually: pre-commit run --all-files
+# To skip pre-commit when committing: git commit --no-verify
+
+ci:
+  autoupdate_commit_msg: "chore: update pre-commit hooks"
+  autofix_commit_msg: "style: pre-commit fixes"
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: mixed-line-ending
+      - id: name-tests-test
+        args: [--pytest-test-first]
+  # pygrep-hooks: a collection of fast, cheap, regex based pre-commit hooks
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-no-log-warn
+      - id: python-no-eval
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+  # pip audit to check for known pip vulnerabilities
+  - repo: https://github.com/pypa/pip-audit
+    rev: v2.7.1
+    hooks:
+      - id: pip-audit
+  # Ruff linter and formatter - includes Jupyter notebook support
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.2
+    hooks:
+      # Run linter first (some fixes might require reformatting)
+      - id: ruff
+        types_or: [python, pyi, jupyter]
+        args: [--fix]
+      - id: ruff-format
+        types_or: [python, pyi, jupyter]

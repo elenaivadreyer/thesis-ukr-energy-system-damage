@@ -1,0 +1,158 @@
+[build-system]
+requires = ["setuptools >= 69.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data_template_project_name"
+version = "0.0.1.dev6"
+description = "project_description"
+readme = "README.md"
+authors = [
+    {name = "Triin Tamra", email = "triin.tamra@bmwk.bund.de"},
+]
+maintainers = [{name = "Triin Tamra", email = "triin.tamra@bmwk.bund.de"}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11"
+]
+requires-python = ">=3.11"
+dependencies = [
+    'openpyxl==3.1.2', # NOTE: necessary for pd.read_excel()
+    'pandas==2.1.4', # NOTE: 2.2.0 does not work with data_df.to_sql()! [02.02.2024]
+    'requests==2.31.0',
+    'sqlalchemy==1.4.51',
+    'bs4==0.0.2',
+    'beautifulsoup4==4.12.3',
+    'xlrd==2.0.1', # NOTE: this is necessary for older .xls files, pd.read_excel()
+]
+
+[project.optional-dependencies]
+test = [
+    "ruff==0.8.2",
+    "check-manifest==0.49",
+    "coverage[toml]==7.4.1",
+    "coverage-badge==1.1.0",
+    "ipykernel==6.29.3",
+    "matplotlib==3.8.3",
+    "pre-commit==3.6.0",
+    "psycopg2==2.9.9",
+    "pytest==8.0.0",
+    "pytest-cov==4.1.0",
+    "pytest-github-actions-annotate-failures==0.2.0",
+    "pytest-mock==3.12.0",
+    "pytest-runner==6.0.1",
+    "python-dotenv==1.0.1",
+    "shellcheck-py==0.9.0.6"
+]
+
+[project.urls]
+Documentation = "https://github.com/author_name/data_template_project_name/tree/main#readme"
+Source = "https://github.com/author_name/data_template_project_name"
+Tracker = "https://github.com/author_name/data_template_project_name/issues"
+
+# Ruff configuration
+[tool.ruff]
+
+# Global exclusions
+exclude = [
+    ".git",
+    ".cache",
+    ".tox",
+    "venv",
+    ".venv",
+    ".env",
+    "build",
+    "__pycache__",
+    "dist",
+]
+
+# Line length
+line-length = 120
+
+# Ruff linting configuration
+[tool.ruff.lint]
+# Select essential rules for code quality and security
+select = [
+    "E",    # Pycodestyle errors (PEP8 style)
+    "F",    # Pyflakes (code errors and potential issues)
+    "W",    # Pycodestyle warnings
+    "B",    # flake8-bugbear (likely bugs)
+    "I",    # isort (import sorting)
+    "UP",   # pyupgrade (modern Python syntax)
+    "S",    # Security checks (replaces bandit)
+    "N",    # PEP8 naming conventions
+    "D",    # Docstring conventions (PEP257)
+]
+
+# Ignore specific rules
+ignore = [
+    "E722",   # Do not use bare except
+    # Docstring requirements - relaxed for template flexibility
+    "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",
+    "D203",   # One blank line before class docstring (conflicts with formatter)
+    "D211",   # No blank lines before class docstring (conflicts with D203)
+    "D212",   # Multi-line docstring summary at first line (conflicts with D213)
+    "D404",   # First word should not be "This"
+    "D401",   # Non-imperative mood
+    "N801",   # Class name should use CapWords convention
+]
+
+# Allows unused variables when underscore-prefixed
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Excluding directories from specific linting checks
+[tool.ruff.lint.per-file-ignores]
+# Relax rules for tests: S (security), D (docstrings), N801 (naming conventions)
+"tests/*" = ["S", "D", "N801"]
+
+[tool.ruff.lint.isort]
+# Import sorting configuration
+split-on-trailing-comma = true
+
+
+# Coverage configuration
+[tool.coverage.report]
+fail_under = 100
+
+[tool.coverage.run]
+branch = true
+
+# Pytest configuration
+pythonpath = [
+  "src"
+]
+testpaths = "tests"
+junit_family = "xunit2"
+markers = [
+    "integration: marks as integration test",
+    "notebooks: marks as notebook test",
+    "gpu: marks as gpu test",
+    "spark: marks tests which need Spark",
+    "slow: marks tests as slow",
+    "unit: fast offline tests",
+]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py, integration, spark, all
+
+[testenv]
+commands =
+    pytest -m "not integration and not spark" {posargs}
+
+[testenv:integration]
+commands =
+    pytest -m "integration" {posargs}
+
+[testenv:all]
+extras = all
+setenv =
+       PYSPARK_DRIVER_PYTHON = {envpython}
+       PYSPARK_PYTHON = {envpython}
+commands =
+    pytest {posargs}
+"""
