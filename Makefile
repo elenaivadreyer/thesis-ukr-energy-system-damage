@@ -27,7 +27,7 @@ test:
 test_with_cov:
 	@echo "Running tests with coverage..."
 	@source .venv/bin/activate && \
-	python3 -m pytest --cov=src/data_template_project_name --cov-report=term-missing --cov-report=xml --cov-append --cov-fail-under=0
+	python3 -m pytest --cov=src/thesis_ukr_energy_system_damage --cov-report=term-missing --cov-report=xml --cov-append --cov-fail-under=0
 
 # Linting and formatting
 .PHONY: lint format check

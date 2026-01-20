@@ -1,6 +1,6 @@
-# data_template_project_name
+# thesis_ukr_energy_system_damage
 
-#### project_description
+#### 
 
 ```
 The user/developer writes a brief introduction about the project repository here.
@@ -8,20 +8,20 @@ What modules it consists of, what for, and any hints/tips that would help other
 users/developers to use this package.
 ```
 
-How to use this package or its modules directly, please refer to [notebooks/sample_data_template_project_name.ipynb](./notebooks/sample_data_template_project_name.ipynb)
+How to use this package or its modules directly, please refer to [notebooks/sample_thesis_ukr_energy_system_damage.ipynb](./notebooks/sample_thesis_ukr_energy_system_damage.ipynb)
 
 ## Structure
-* `src/data_template_project_name`: this is considered a package as `data_template_project_name`.
-* `tests`: this is considered a test folder to test the contents of a package `data_template_project_name`. Please note, test folder and its subfolders must not have `__init__.py`.
-* `tests/test_data_template_project_name.py`: Example calls of the very package `data_template_project_name`.
+* `src/thesis_ukr_energy_system_damage`: this is considered a package as `thesis_ukr_energy_system_damage`.
+* `tests`: this is considered a test folder to test the contents of a package `thesis_ukr_energy_system_damage`. Please note, test folder and its subfolders must not have `__init__.py`.
+* `tests/test_thesis_ukr_energy_system_damage.py`: Example calls of the very package `thesis_ukr_energy_system_damage`.
 * If other modules are available, separate test files (one test file per module) are expected to be set up.
 
 
 ## Accessing Virtual Environment in Codespaces
-For bash terminal users wanting to work in a virtual environment of data_template_project_name, enter these commands:
+For bash terminal users wanting to work in a virtual environment of thesis_ukr_energy_system_damage, enter these commands:
 
 ```
-cd /workspaces/data_template_project_name
+cd /workspaces/thesis_ukr_energy_system_damage
 source .venv/bin/activate
 ```
 

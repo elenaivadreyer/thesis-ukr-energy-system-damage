@@ -1,13 +1,13 @@
 """
-This file is a placeholder to test the contents of a project package: data_template_project_name.
+This file is a placeholder to test the contents of a project package: thesis_ukr_energy_system_damage.
 
 If a module or multiple modules are created in this project package, separate test files for these modules are expected.
 
 Recommended: Do not create __init__.py file under folder "tests".
 """
 
-import data_template_project_name
+import thesis_ukr_energy_system_damage
 
 
 def test_project_name() -> None:
-    assert data_template_project_name.NAME == "data_template_project_name"
+    assert thesis_ukr_energy_system_damage.NAME == "thesis_ukr_energy_system_damage"

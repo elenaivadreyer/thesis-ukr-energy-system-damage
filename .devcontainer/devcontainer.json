@@ -1,6 +1,6 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/python-3
-// NOTE: This is a template file. When using this template, 'data_template_project_name' will be automatically
+// NOTE: This is a template file. When using this template, 'thesis_ukr_energy_system_damage' will be automatically
 // replaced with your actual project name. If editing manually, update all occurrences accordingly.
 {
 	"name": "Python 3",
@@ -19,7 +19,7 @@
 		"vscode": {
 			// Set *default* container specific settings.json values on container create.
 			"settings": {
-				"python.defaultInterpreterPath": "/workspaces/data_template_project_name/.venv/bin/python",
+				"python.defaultInterpreterPath": "/workspaces/thesis_ukr_energy_system_damage/.venv/bin/python",
 				"python.terminal.activateEnvironment": true,
 				// "python.terminal.activateEnvInCurrentTerminal": true,
 				"python.testing.pytestArgs": [
@@ -47,12 +47,12 @@
 						]
 					}
 				],
-				// NOTE: some paths referring to the ones of data_template_project_name/.venv is recommended (instead of built-in standard paths): [TODO: this is to be checked]
-				// "data_template_project_name" package for example can be noticed that it exists.
+				// NOTE: some paths referring to the ones of thesis_ukr_energy_system_damage/.venv is recommended (instead of built-in standard paths): [TODO: this is to be checked]
+				// "thesis_ukr_energy_system_damage" package for example can be noticed that it exists.
 				// pyproject.toml can be correctly considered (flake8 line width for example)
-				"python.testing.pytestPath": "/workspaces/data_template_project_name/.venv/bin/pytest"
+				"python.testing.pytestPath": "/workspaces/thesis_ukr_energy_system_damage/.venv/bin/pytest"
 				// mypy seems to be not working properly in VSCode, so it's disabled for now. Kept for now because mypy is not replaced by Ruff.
-				// "mypy-type-checker.path": ["/workspaces/data_template_project_name/.venv/bin/mypy"],
+				// "mypy-type-checker.path": ["/workspaces/thesis_ukr_energy_system_damage/.venv/bin/mypy"],
 				// "mypy-type-checker.args": ["--config-file=pyproject.toml"]
 			},
 			// Add the IDs of extensions you want installed when the container is created.
@@ -90,10 +90,10 @@
 		}
 	},
 	// Git config for codespaces and setup virtual environment
-	// NOTE: Replace 'data_template_project_name' with your actual project name if using this template
-	"updateContentCommand": "git config --global --add safe.directory /workspaces/data_template_project_name; make create_venv",
+	// NOTE: Replace 'thesis_ukr_energy_system_damage' with your actual project name if using this template
+	"updateContentCommand": "git config --global --add safe.directory /workspaces/thesis_ukr_energy_system_damage; make create_venv",
 	// NOTE As of July 2025 due to codespace changes itself, this extra .venv activation is needed to really activate .venv properly.
-	"postCreateCommand": "echo 'source /workspaces/data_template_project_name/.venv/bin/activate' >> ~/.bashrc",
+	"postCreateCommand": "echo 'source /workspaces/thesis_ukr_energy_system_damage/.venv/bin/activate' >> ~/.bashrc",
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	// NOTE: root is used on purpose - only for Codespaces Development Environment. [Hint: Makefile and sudo-users when using it]
 	"remoteUser": "root",
